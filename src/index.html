@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>WInfo - Informações do SO</title>
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <div class="header">
+      <img class="headerImg" src="images/toptech.svg" id="toptech">
+      <img class="headerImg text-flicker-in-glow" src="images/winfo.png" id="WInfo">
+      <Link href="/hds"><img src="images/menu.svg" class="menu-btn" id="open-menu"></Link>
+    </div>
+    <div class="body">
+      <div class="computerMonitor">
+        <div class='box'>
+          <div class='innerBox' id="cpuInnerBox">
+            <img src="images/cpu.svg" id="cpuImg">
+          </div>
+          <div class='span'>
+          <span class="label"> Uso da CPU</span>
+          <span id="cpu">-</span>
+          </div>
+          <span class='avg'>0</span>
+        </div>
+        <div class='box'>
+        <div class='innerBox' id="memInnerBox">
+            <img src="images/memoria.svg" id="memImg">
+          </div>
+          <div class='span'>
+            <span class="label"> Uso da Memória</span>
+            <span id="mem">-</span>
+          </div>
+          <span class='avg'>0</span>
+        </div>
+        <div class='box'>
+          <div class='innerBox' id="pingInnerBox">
+          <img src="images/ping.svg" id="pingImg">
+          </div>
+          <div class='span'>
+            <span class="label">Ping</span>
+            <span id="ping" disable>-</span>
+          </div>
+          <div class="lds-ripple" id="loader1" ><div id="loader2"></div><div id="loader3"></div></div>
+        </div>
+    </div>
+      <div class='box systemInfo'>
+        <div class="boxCol">
+          <div class="boxLine">
+           <div class="boxGroup">
+              <span class="label"> AMD</span>
+              <span class="label"> FX(tm)-6300 Six-Core Proces </span>
+            </div>
+            <img src="images/cooler.svg" class="boxWatermark">
+            <div class="boxGroup">
+              <span class="label"> 6 cores</span>
+              <span class="label"> 3,5 GHZ</span>
+            </div>
+          </div>
+          <div class="boxLine"></div>
+          <div class="boxLine"></div>
+        </div>
+        <div class="boxCol">
+          <div class="boxLine"></div>
+          <div class="boxLine"></div>
+          <div class="boxLine"></div>
+          </div>
+        <div class="boxCol">
+            <div class="boxLine"></div>
+            <div class="boxLine"></div>
+            <div class="boxLine"></div>
+        </div>
+
+      </div>
+      <div class="close-container">
+        <div class="leftright"></div>
+        <div class="rightleft"></div>
+        <label class="close">close</label>
+      </div>
+    <script >
+    var hue, saturation, loaderColor;
+    var luminosity = 80;
+    function HSLToHex(h,s,l) {
+  s /= 100;
+  l /= 100;
+
+  let c = (1 - Math.abs(2 * l - 1)) * s,
+      x = c * (1 - Math.abs((h / 60) % 2 - 1)),
+      m = l - c/2,
+      r = 0,
+      g = 0,
+      b = 0;
+
+  if (0 <= h && h < 60) {
+    r = c; g = x; b = 0;
+  } else if (60 <= h && h < 120) {
+    r = x; g = c; b = 0;
+  } else if (120 <= h && h < 180) {
+    r = 0; g = c; b = x;
+  } else if (180 <= h && h < 240) {
+    r = 0; g = x; b = c;
+  } else if (240 <= h && h < 300) {
+    r = x; g = 0; b = c;
+  } else if (300 <= h && h < 360) {
+    r = c; g = 0; b = x;
+  }
+  // Having obtained RGB, convert channels to hex
+  r = Math.round((r + m) * 255).toString(16);
+  g = Math.round((g + m) * 255).toString(16);
+  b = Math.round((b + m) * 255).toString(16);
+
+  // Prepend 0s, if necessary
+  if (r.length == 1)
+    r = "0" + r;
+  if (g.length == 1)
+    g = "0" + g;
+  if (b.length == 1)
+    b = "0" + b;
+
+  return "#" + r + g + b;
+}
+      const electron = require('electron');
+      const ipcRenderer = electron.ipcRenderer;
+      const info = ['cpu', 'mem', 'ping'];
+
+      // for(i = 0; i < info.length; i++){
+      //   ipcRenderer.on(info[i], (event, data) => {
+      //       document.getElementById(info[i]).innerHTML = data.toFixed(2);
+      //   })
+      // }
+
+      ipcRenderer.on('cpu', (event, data) => {
+            document.getElementById('cpu').innerHTML = data.toFixed(2)+(" %");
+      })
+      ipcRenderer.on('mem', (event, data) => {
+            document.getElementById('mem').innerHTML = data.toFixed(2)+(" %");
+      })
+      ipcRenderer.on('ping', (event, data) => {
+            document.getElementById('ping').innerHTML = data.toFixed(0)+(" ms");
+            hue = parseInt(data * 2.66) + 160;
+            saturation = parseInt(data * 0.33)+ 70;
+            loaderColor = HSLToHex(hue,saturation,luminosity)
+
+            if(data === 0){
+
+              document.getElementById('loader1').style.borderColor = "white" ;
+              document.getElementById('loader2').style.borderColor = "white" ;
+              document.getElementById('loader3').style.borderColor = "white" ;
+            } else{
+              if(data < 75){
+                  document.getElementById('loader1').style.borderColor =  loaderColor;
+                  document.getElementById('loader2').style.borderColor = loaderColor;
+                  document.getElementById('loader3').style.borderColor = loaderColor;
+              }
+              else{
+                  document.getElementById('loader1').style.borderColor =  "#E61717";
+                  document.getElementById('loader2').style.borderColor = "#E61717";
+                  document.getElementById('loader3').style.borderColor = "#E61717";
+              }
+            }
+          })
+      //       if(data >= 1 && data <= 15){
+      //         //rgb(27, 166, 219)
+
+      //         document.getElementById('loader1').style.borderColor = "#1BA6DB" ;
+      //         document.getElementById('loader2').style.borderColor = "#1BA6DB" ;
+      //         document.getElementById('loader3').style.borderColor = "#1BA6DB" ;
+      //       }
+      //         if(data >= 16 && data <= 40){
+      //         console.log("40");
+      //         //rgb(158, 143, 166)
+      //         document.getElementById('loader1').style.borderColor = "#9E8FA6" ;
+      //         document.getElementById('loader2').style.borderColor = "#9E8FA6" ;
+      //         document.getElementById('loader3').style.borderColor = "#9E8FA6" ;
+      //         }
+      //         if(data > 40){
+      //         console.log("else");
+      //         //rgb(255, 126, 126)
+      //         document.getElementById('loader1').style.borderColor = "#FF7E7E" ;
+      //         document.getElementById('loader2').style.borderColor = "#FF7E7E" ;
+      //         document.getElementById('loader3').style.borderColor = "#FF7E7E" ;
+      //       }
+      // })
+      // document.querySelector('#btn-menu').addEventListener('click', () => {
+      //   getData()
+      // })
+
+    </script>
+  </body>
+</html>
+
