@@ -119,16 +119,49 @@ body {
   letter-spacing: 0.24px;
 }
 
+.info {
+  /* Style for "34" */
+  text-shadow: 2px 2px 8px #fff;
+  width: auto;
+  height: 16px;
+  color: #fff;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.24px;
+}
+
+.sheets {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  justify-content: space-around;
+}
 .systemInfo {
   width: 100%;
   height: 80%;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
 }
 .divInfo {
   flex-grow: 1;
   height: 33%;
   background: blue;
+}
+.boxSubtitle {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+}
+.labelSubtitle {
+  color: #ff9100;
+  font-family: Montserrat;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0.48px;
+  margin-top: 5px;
+  margin-left: 20px;
 }
 .boxCol {
   display: flex;
@@ -141,14 +174,33 @@ body {
   width: 100%;
   border: 5px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .boxWatermark {
-  order: 3;
+  position: absolute;
 }
+.boxGroupCol {
+  position: relative;
+  width: 100%;
+  height: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.boxGroupRow {
+  width: 100%;
+  height: 33%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .footer {
   width: 100%;
   height: 5%;
