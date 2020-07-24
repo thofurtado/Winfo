@@ -3,13 +3,15 @@
   <head>
     <meta charset="UTF-8">
     <title>WInfo - Informações do SO</title>
+
     <link rel="stylesheet" href="index.css">
   </head>
   <body>
     <div class="header">
-      <img class="headerImg" src="images/toptech.svg" id="toptech">
+      <img class="headerImg" src="images/toptech.png" id="toptech">
       <img class="headerImg text-flicker-in-glow" src="images/winfo.png" id="WInfo">
       <Link href="/hds"><img src="images/menu.svg" class="menu-btn" id="open-menu"></Link>
+
     </div>
     <div class="body">
       <div class="computerMonitor">
@@ -41,83 +43,130 @@
             <span class="label">Ping</span>
             <span id="ping" disable>-</span>
           </div>
-          <div class="lds-ripple" id="loader1" ><div id="loader2"></div><div id="loader3"></div></div>
+          <div class="lds-ripple loader">
+            <div class="loader">
+            </div>
+            <div class="loader">
+            </div>
+          </div>
         </div>
     </div>
     <div class='box systemInfo'>
       <div class="boxSubtitle">
         <span class="labelSubtitle">Informações do Sistema</span>
-
+        <span class="labelSubtitle" id="sysUpTime">Tempo de Atividade</span>
       </div>
       <div class="sheets">
       <div class="boxCol">
         <div class="boxLine">
           <img src="images/cooler.svg" class="boxWatermark">
           <div class="boxGroupCol" id="">
-            <span class="info">AMD</span>
+            <span class="info" id="cpuManufacturer">Fabricante</span>
             <br/>
-            <span class="info">FX(tm)-6300 Six-Core Proces </span>
+            <span class="info" id="cpuBrand">Marca</span>
           </div>
 
           <div class="boxGroupRow">
-            <span class="info">6 cores</span>
-            <span class="info">3,5 GHZ</span>
+            <span class="info" id="cpuCores">Nº cores</span>
+            <span class="info" id="cpuSpeed">Velocidade</span>
           </div>
         </div>
         <div class="boxLine">
           <img src="images/motherboard.svg" class="boxWatermark">
-            <span class="info">ASUS Tek Computer Ink</span>
-            <span class="info">M5A78L-M/USB3</span>
-            <span class="info">151158593002825</span>
+            <span class="info" id="baseboardManufacturer">Fabricante Placa mãe</span>
+            <br/>
+            <span class="info" id="baseboardModel">Modelo Placa mãe</span>
+
+            <br/>
+            <span class="info" id="baseboardSerial">Serial Placa Mãe</span>
+            <br/>
+            <span class="info" id="chassisType">Tipo de Computador</span>
+            <br/>
         </div>
         <div class="boxLine">
-
-          <span class="info">Microsoft Windows 10 Pro</span>
+          <span class="info" id="osinfoDistro">Distribuição</span>
           <div class="boxGroupRow">
-            <span class="info">18363</span>
+            <span class="info" id="osinfoBuild">Build</span>
             <img src="images/dvd.svg">
-            <span class="info">arch</span>
+            <span class="info" id="osinfoArch">Arquitetura</span>
           </div>
-          <span class="info">DESKTOP-FM05B9M </span>
+          <span class="info" id="osinfoHostname">Hostname</span>
         </div>
       </div>
         <div class="boxCol">
           <div class="boxLine">
             <img src="images/videoCard.svg" class="boxWatermark">
-            <span class="info">AMD Radeon HD 6670 </span>
+            <span class="info" id="graphicsControllersModel">Modelo Placa de Vídeo </span>
             <div class="boxGroupRow">
-              <span class="info">PCI</span>
-
-              <span class="info">2048mb</span>
+              <span class="info" id="graphicsControllersBus">Conexão Placa de Vídeo</span>
+              <span class="info" id="graphicsControllersVram">Tamanho Placa de Vídeo</span>
             </div>
 
           </div>
           <div class="boxLine">
             <div class="boxGroupCol">
-              <span class="info">DVI</span>
+              <span class="info" id="graphicsDisplaysConnection">Conexão 1</span>
 
-              <span class="info">1024 x 768</span>
+              <span class="info" id="graphicsDisplaysResolution">Resolução 1</span>
             </div>
             <img src="images/monitor.svg" class="boxWatermark">
             <div class="boxGroupCol">
-              <span class="info">HD15</span>
+              <span class="info" id="graphicsDisplaysConnection2">Conexão 2</span>
 
-              <span class="info">1248 x 1024</span>
+              <span class="info" id="graphicsDisplaysResolution2">Resolução 2</span>
             </div>
           </div>
           <div class="boxLine">
-            <img src="images/printer.svg" class="boxWatermark">
+            <img src="images/memory.svg" class="boxWatermark">
+            <div class="boxGroupRow">
+            <div class="boxGroupCol">
+              <span class="info" id="memLayoutBank0">Slot</span>
+              <span class="info" id="memLayoutSize0">Tamanho</span>
+            </div>
+            <div class="boxGroupCol">
+              <span class="info" id="memLayoutBank1">Slot</span>
+              <span class="info" id="memLayoutSize1">Tamanho</span>
+            </div>
+          </div>
+            <div class="boxGroupRow">
+              <div class="boxGroupCol">
+                <span class="info" id="memLayoutBank2">Slot</span>
+                <span class="info" id="memLayoutSize2">Tamanho</span>
+              </div>
+              <div class="boxGroupCol">
+                <span class="info" id="memLayoutBank3">Slot</span>
+                <span class="info" id="memLayoutSize3">Tamanho</span>
+              </div>
+            </div>
           </div>
           </div>
-        <div class="boxCol">
+          <div class="boxCol">
             <div class="boxLine">
               <img src="images/disks.svg" class="boxWatermark">
+                  <span class="info" id="diskLayoutName0">Nome</span>
+                  <span class="info" id="diskLayoutSize0">Tamanho</span>
+                  <span class="info" id="diskLayoutType0">Tipo</span>
+                  <span class="info" id="diskLayoutName1">Nome</span>
+                  <span class="info" id="diskLayoutSize1">Tamanho</span>
+                  <span class="info" id="diskLayoutType1">Tipo</span>
             </div>
             <div class="boxLine">
               <img src="images/network.svg" class="boxWatermark">
+              <div class="boxGroupCol">
+                <span class="info" id="dataNetIface">Interface</span>
+                <span class="info" id="dataNetIfaceName">Nome</span>
+              </div>
+              <span class="info" id="dataNetIp4">0.0.0.0</span>
+              <div class="boxGroupRow">
+                <span class="info" id="dataNetDhcp">DHCP</span>
+                <span class="info" id="dataNetSpeed">Velocidade</span>
+              </div>
             </div>
             <div class="boxLine">
               <img src="images/baterry.svg" class="boxWatermark">
+              <span class="info" id="batteryHasBattery">Presente</span>
+              <span class="info" id="batteryIsCharging">Carregando</span>
+              <span class="info" id="batteryPercent">Porcentagem</span>
             </div>
         </div>
       </div>
@@ -131,115 +180,7 @@
     </div>
   </div>
   <script src="js/menuHandler.js"></script>
-    <script >
-    var hue, saturation, loaderColor;
-    var luminosity = 80;
-    function HSLToHex(h,s,l) {
-  s /= 100;
-  l /= 100;
-
-  let c = (1 - Math.abs(2 * l - 1)) * s,
-      x = c * (1 - Math.abs((h / 60) % 2 - 1)),
-      m = l - c/2,
-      r = 0,
-      g = 0,
-      b = 0;
-
-  if (0 <= h && h < 60) {
-    r = c; g = x; b = 0;
-  } else if (60 <= h && h < 120) {
-    r = x; g = c; b = 0;
-  } else if (120 <= h && h < 180) {
-    r = 0; g = c; b = x;
-  } else if (180 <= h && h < 240) {
-    r = 0; g = x; b = c;
-  } else if (240 <= h && h < 300) {
-    r = x; g = 0; b = c;
-  } else if (300 <= h && h < 360) {
-    r = c; g = 0; b = x;
-  }
-  // Having obtained RGB, convert channels to hex
-  r = Math.round((r + m) * 255).toString(16);
-  g = Math.round((g + m) * 255).toString(16);
-  b = Math.round((b + m) * 255).toString(16);
-
-  // Prepend 0s, if necessary
-  if (r.length == 1)
-    r = "0" + r;
-  if (g.length == 1)
-    g = "0" + g;
-  if (b.length == 1)
-    b = "0" + b;
-
-  return "#" + r + g + b;
-}
-      const electron = require('electron');
-      const ipcRenderer = electron.ipcRenderer;
-      const info = ['cpu', 'mem', 'ping'];
-
-      // for(i = 0; i < info.length; i++){
-      //   ipcRenderer.on(info[i], (event, data) => {
-      //       document.getElementById(info[i]).innerHTML = data.toFixed(2);
-      //   })
-      // }
-
-      ipcRenderer.on('cpu', (event, data) => {
-            document.getElementById('cpu').innerHTML = data.toFixed(2)+(" %");
-      })
-      ipcRenderer.on('mem', (event, data) => {
-            document.getElementById('mem').innerHTML = data.toFixed(2)+(" %");
-      })
-      ipcRenderer.on('ping', (event, data) => {
-            document.getElementById('ping').innerHTML = data.toFixed(0)+(" ms");
-            hue = parseInt(data * 2.66) + 160;
-            saturation = parseInt(data * 0.33)+ 70;
-            loaderColor = HSLToHex(hue,saturation,luminosity)
-
-            if(data === 0){
-
-              document.getElementById('loader1').style.borderColor = "white" ;
-              document.getElementById('loader2').style.borderColor = "white" ;
-              document.getElementById('loader3').style.borderColor = "white" ;
-            } else{
-              if(data < 75){
-                  document.getElementById('loader1').style.borderColor =  loaderColor;
-                  document.getElementById('loader2').style.borderColor = loaderColor;
-                  document.getElementById('loader3').style.borderColor = loaderColor;
-              }
-              else{
-                  document.getElementById('loader1').style.borderColor =  "#E61717";
-                  document.getElementById('loader2').style.borderColor = "#E61717";
-                  document.getElementById('loader3').style.borderColor = "#E61717";
-              }
-            }
-          })
-      //       if(data >= 1 && data <= 15){
-      //         //rgb(27, 166, 219)
-
-      //         document.getElementById('loader1').style.borderColor = "#1BA6DB" ;
-      //         document.getElementById('loader2').style.borderColor = "#1BA6DB" ;
-      //         document.getElementById('loader3').style.borderColor = "#1BA6DB" ;
-      //       }
-      //         if(data >= 16 && data <= 40){
-      //         console.log("40");
-      //         //rgb(158, 143, 166)
-      //         document.getElementById('loader1').style.borderColor = "#9E8FA6" ;
-      //         document.getElementById('loader2').style.borderColor = "#9E8FA6" ;
-      //         document.getElementById('loader3').style.borderColor = "#9E8FA6" ;
-      //         }
-      //         if(data > 40){
-      //         console.log("else");
-      //         //rgb(255, 126, 126)
-      //         document.getElementById('loader1').style.borderColor = "#FF7E7E" ;
-      //         document.getElementById('loader2').style.borderColor = "#FF7E7E" ;
-      //         document.getElementById('loader3').style.borderColor = "#FF7E7E" ;
-      //       }
-      // })
-      // document.querySelector('#btn-menu').addEventListener('click', () => {
-      //   getData()
-      // })
-
-    </script>
+  <script src="js/renderVars.js"></script>
   </body>
 </html>
 

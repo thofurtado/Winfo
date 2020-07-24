@@ -126,8 +126,8 @@ body {
   height: 16px;
   color: #fff;
   font-family: Montserrat;
-  font-size: 12px;
-  font-weight: 400;
+  font-size: 15px;
+  font-weight: 500;
   letter-spacing: 0.24px;
 }
 
@@ -152,7 +152,14 @@ body {
   width: 100%;
   height: 10%;
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  border-bottom: 2px solid #ffb554;
+  box-shadow: 1px 1px 10px #fe9000;
+}
+#sysUpTime {
+  font-size: 20px;
+  margin-right: 20px;
 }
 .labelSubtitle {
   color: #ff9100;
@@ -168,6 +175,8 @@ body {
   flex-direction: column;
   height: 100%;
   width: 100%;
+  border-bottom: 0px solid #ffb554;
+  box-shadow: 0px 0px 0px #fe9000;
 }
 .boxLine {
   height: 100%;
@@ -178,6 +187,8 @@ body {
   align-items: center;
   flex-wrap: wrap;
   flex-direction: column;
+  border-bottom: 0px solid #ffb554;
+  box-shadow: 0px 0px 6px #fe9000;
 }
 
 .boxWatermark {
