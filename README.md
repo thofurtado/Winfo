@@ -1,5 +1,4 @@
 # Winfo
 ## Sistema de informações e analise do windows em electron
 
-- Executar
-yarn run start
+- Executar: > yarn run start
