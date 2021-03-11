@@ -4,6 +4,22 @@ const info = ["cpu", "mem", "ping"];
 var hue, saturation, loaderColor;
 var luminosity = 80;
 
+ipcRenderer.on("ping", (event, data) => {
+  $("#ping").text(data.toFixed(0) + " ms");
+  hue = parseInt(data * 2.66) + 160;
+  saturation = parseInt(data * 0.33) + 70;
+  loaderColor = HSLToHex(hue, saturation, luminosity);
+
+  if (data === 0) {
+    $(".loader").css("border-color", "gray");
+  } else {
+    if (data < 75) {
+      $(".loader").css("border-color", loaderColor);
+    } else {
+      $(".loader").css("border-color", "#E61717");
+    }
+  }
+});
 ipcRenderer.on("cpu", (event, data) => {
   $("#cpu").text(data.toFixed(2) + " %");
 });
@@ -323,20 +339,3 @@ function HSLToHex(h, s, l) {
 
   return "#" + r + g + b;
 }
-
-ipcRenderer.on("ping", (event, data) => {
-  $("#ping").text(data.toFixed(0) + " ms");
-  hue = parseInt(data * 2.66) + 160;
-  saturation = parseInt(data * 0.33) + 70;
-  loaderColor = HSLToHex(hue, saturation, luminosity);
-
-  if (data === 0) {
-    $(".loader").css("border-color", "gray");
-  } else {
-    if (data < 75) {
-      $(".loader").css("border-color", loaderColor);
-    } else {
-      $(".loader").css("border-color", "#E61717");
-    }
-  }
-});

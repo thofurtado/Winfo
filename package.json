@@ -7,7 +7,7 @@
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
-    "make": "electron-forge make",
+    "make": "electron-forge make --arch=ia32",
     "publish": "electron-forge publish",
     "license": "license",
     "lint": "echo \"No linting configured\"",
@@ -66,6 +66,8 @@
     "electron-squirrel-startup": "^1.0.0",
     "hsl-to-hex": "^1.0.0",
     "jquery": "^3.5.1",
+    "mongodb": "^3.5.9",
+    "mongoose": "^5.9.25",
     "os-utils": "0.0.14",
     "ping": "^0.2.3",
     "systeminformation": "^4.26.10"

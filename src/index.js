@@ -12,12 +12,11 @@ const os = require("os-utils");
 const si = require("systeminformation");
 const path = require("path");
 var ping = require("ping");
-
-// Handle creating/removing shortcuts on Windows when installing/uninstalling.
-if (require("electron-squirrel-startup")) {
-  // eslint-disable-line global-require
-  app.quit();
-}
+const { parseJSON } = require("jquery");
+const MongoClient = require("mongodb").MongoClient;
+const uri =
+  "mongodb+srv://<thofurtado>:<T0p1nf0r>@cluster0-so0yk.mongodb.net/<windowsInformation>?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
 
 // function execute(command, callback) {
 //   exec(command, (error, stdout, stderr) => {
@@ -63,7 +62,7 @@ const createWindow = () => {
       pingList = [];
       ping.promise
         .probe(host, {
-          timeout: 6,
+          timeout: 10,
           extra: ["-n", 4],
         })
         .then(function (res) {
@@ -102,6 +101,7 @@ const createWindow = () => {
   }, 4000);
 
   //gerando valor médio para lista de pings
+
   setInterval(() => {
     if (pingList.length === 4) {
       pingAvg = pingList.reduce(function (pingAvg, ping) {
@@ -109,6 +109,7 @@ const createWindow = () => {
       }, 0);
     }
   }, 750);
+
   setInterval(() => {
     mainWindow.webContents.send("cpu", cpu);
     mainWindow.webContents.send("mem", mem);
@@ -239,11 +240,20 @@ const createWindow = () => {
             " x " +
             data.graphics.displays[1].resolutiony
         );
+        client.connect((err) => {
+          const collection = client
+            .db("windowsInformation")
+            .collection("computers");
+          // perform actions on the collection object
+          console.log(collection);
+          collection.insertOne({ teste: "teste" });
+          client.close();
+        });
       } else {
         mainWindow.webContents.send("graphicsDisplaysConnection2", false);
         mainWindow.webContents.send("graphicsDisplaysResolution2", false);
       }
-    }, 5000);
+    }, 10000);
   });
 
   // si.getStaticData().then(function (data) {
@@ -255,7 +265,7 @@ const createWindow = () => {
   // });
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools();
+  //mainWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished
